@@ -189,6 +189,7 @@ When `certificate_arn` is not present, `acm` hook attempts to find the certifica
 - [nagachika/acmesmith-google-cloud-dns](https://github.com/nagachika/acmesmith-google-cloud-dns) `dns-01` challenge responder with [Google Cloud DNS](https://cloud.google.com/dns/).
 - [mipmip/acmesmith-http-path](https://github.com/mipmip/acmesmith-http-path) - `http-01` challenge reponder if you have write access to the vhost server root.
 - [benkap/acmesmith-verisign](https://github.com/benkap/acmesmith-verisign) - `dns-01` challenge responder with Verisign MDNS REST API.
+- [benkap/acmesmith-ns1](https://github.com/benkap/acmesmith-ns1) - `dns-01` challenge responder with NS1 API.
 
 ### Storage
 

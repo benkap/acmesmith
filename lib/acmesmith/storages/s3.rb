@@ -74,11 +74,12 @@ module Acmesmith
             body: body,
             content_type: content_type,
           }
-          if kms
+          if use_kms
             params[:server_side_encryption] = 'aws:kms'
             key_id = kms_key_id_certificate_key || kms_key_id
             params[:ssekms_key_id] = key_id if key_id
           end
+
           @s3.put_object(params)
         end
 
@@ -92,12 +93,19 @@ module Acmesmith
         end
 
         if update_current
-          @s3.put_object(
+          params = {
             bucket: bucket,
             key: certificate_current_key(cert.common_name),
-            content_type: 'text/plain',
             body: cert.version,
-          )
+            content_type: 'text/plain',
+          }
+          if use_kms
+            params[:server_side_encryption] = 'aws:kms'
+            key_id = kms_key_id_certificate_key || kms_key_id
+            params[:ssekms_key_id] = key_id if key_id
+          end
+
+          @s3.put_object(params)
         end
       end
 
@@ -191,3 +199,4 @@ module Acmesmith
     end
   end
 end
+
